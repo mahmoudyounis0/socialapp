@@ -1,0 +1,109 @@
+/* Main Container */
+.signupContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+/* Form Box */
+.signupBox {
+  background: white;
+  color: #333;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  height: fit-content;
+}
+
+/* Heading */
+.signupBox h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Input Fields */
+.signupInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Button */
+.signupButton {
+  background: #4c5fd7;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+}
+
+.signupButton:hover {
+  background: #3651e9;
+}
+
+/* Link Styling */
+.signupLink {
+  display: block;
+  margin-top: 1rem;
+  color: #4c5fd7;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .signupBox {
+    padding: 1.5rem; /* Reduce padding for smaller screens */
+    max-width: 90%; /* Allow more flexibility on small devices */
+  }
+
+  .signupBox h2 {
+    font-size: 1.8rem; /* Reduce heading size */
+  }
+
+  .signupInput {
+    font-size: 0.9rem; /* Slightly smaller input text */
+    padding: 8px; /* Adjust padding */
+  }
+
+  .signupButton {
+    font-size: 0.9rem; /* Make button text fit better */
+    padding: 8px;
+  }
+
+  .signupLink {
+    font-size: 0.9rem; /* Adjust text size for smaller screens */
+  }
+}
+.radioGroup {
+  display: flex;
+  gap: 20px; /* Adds spacing between the radio buttons */
+  margin: 10px 0;
+}
+
+.radioGroup label {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.radioGroup input {
+  accent-color: #007bff;
+  transform: scale(1.2); 
+}

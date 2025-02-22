@@ -1,0 +1,91 @@
+/* Main Container */
+.signinContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white; 
+    margin-top: 60px;
+  }
+  
+  /* Form Box */
+  .signinBox {
+    background: white;
+    color: #333;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    height: fit-content;
+  }
+  
+  /* Heading */
+  .signinBox h2 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  /* Input Fields */
+  .signinInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Button */
+  .signinButton {
+    background: #4c5fd7;
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .signinButton:hover {
+    background: #3651e9;
+  }
+  
+  /* Link Styling */
+  .signinLink {
+    display: block;
+    margin-top: 1rem;
+    color: #4c5fd7;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .signinLink:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 480px) {
+    .signinBox {
+        padding: 1.5rem; /* Reduce padding for smaller screens */
+        max-width: 90%; /* Make it more flexible */
+    }
+
+    .signinBox h2 {
+        font-size: 1.8rem; /* Adjust heading size */
+    }
+
+    .signinInput {
+        font-size: 0.9rem; /* Slightly smaller input text */
+        padding: 8px;
+    }
+
+    .signinButton {
+        font-size: 0.9rem; /* Make button text fit better */
+        padding: 8px;
+    }
+
+    .signinLink {
+        font-size: 0.9rem; /* Adjust text size */
+    }
+}
