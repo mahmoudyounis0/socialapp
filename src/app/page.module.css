@@ -1,10 +1,21 @@
 /* Background with a modern gradient */
 .mainContainer {
     min-height: 100vh;
+    background: linear-gradient(45deg, 
+    #e4484a 0%,
+    #e0385c 21%,
+    #df3263 32%,
+    #c53268 41%,
+    #823375 61%,
+    #3b3484 81%,
+    #3b3484 100%
+  );
+  background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
     color: white;
   }
   

@@ -1,21 +1,25 @@
-import { NextRequest, NextResponse } from "next/server";
-
-// Define protected routes
-const protectedRoutes = ["/dashboard", "/profile", "/settings"];
+import { type NextRequest, NextResponse } from "next/server"
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get("authToken")?.value; // Get auth token from cookies
-  const isProtectedRoute = protectedRoutes.includes(req.nextUrl.pathname);
+  const token = req.cookies.get("authToken")?.value
+  const isProtectedRoute = req.nextUrl.pathname.startsWith("/social")
+  const isAuthRoute = ["/signin", "/signup"].includes(req.nextUrl.pathname)
 
   if (isProtectedRoute && !token) {
-    // Redirect to login if trying to access a protected route
-    return NextResponse.redirect(new URL("/signin", req.url));
+    // Redirect to login if trying to access a protected route without a token
+    return NextResponse.redirect(new URL("/signin", req.url))
   }
 
-  return NextResponse.next(); // Continue to the requested page
+  if (isAuthRoute && token) {
+    // Redirect to /social if trying to access auth routes while logged in
+    return NextResponse.redirect(new URL("/social", req.url))
+  }
+
+  return NextResponse.next()
 }
 
-// Apply middleware only to these routes
+// Apply middleware to all routes
 export const config = {
-  matcher: ["/dashboard", "/profile", "/settings"],
-};
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+}
+

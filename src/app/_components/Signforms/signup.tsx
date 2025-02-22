@@ -4,7 +4,11 @@ import Link from "next/link";
 import React from "react";
 import styles from "../../(auth)/signup/signup.module.css";
 import { useFormik } from "formik";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 export default function FromSignUp() {
+  const router = useRouter();
   interface SignupData {
     name: string;
     email: string;
@@ -13,6 +17,14 @@ export default function FromSignUp() {
     dateOfBirth: string;
     gender: string;
   }
+  const signupdata: SignupData = {
+    name: "",
+    email: "",
+    password: "",
+    rePassword: "",
+    dateOfBirth: "",
+    gender: "",
+  };
   const SignupSchema = yup.object({
     name: yup.string().required("Name is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -32,29 +44,29 @@ export default function FromSignUp() {
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Confirm Password is required"),
-    dateOfBirth: yup.string().required("Date of birth is required"),
+    dateOfBirth: yup
+      .date()
+      .typeError("Invalid date format")
+      .required("Date of birth is required"),
     gender: yup.string().required("Gender is required"),
   });
 
   const handleSignup = async (values: SignupData) => {
-    console.log(values);
-
-    const response = await fetch("/api/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-
-    const data = await response.json();
-    console.log(data);
-  };
-  const signupdata: SignupData = {
-    name: "",
-    email: "",
-    password: "",
-    rePassword: "",
-    dateOfBirth: "",
-    gender: "",
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/signup`,values)
+      toast.success(res?.data?.message, {
+        duration: 3000,
+        position: "top-center",
+      });
+      router.push("/signin")
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data.error, {
+        duration: 3000,
+        position: "top-center",
+      });
+      
+    }
   };
   const myFormik = useFormik({
     initialValues: signupdata,
@@ -64,6 +76,7 @@ export default function FromSignUp() {
 
   return (
     <>
+    <Toaster />
       <form onSubmit={myFormik.handleSubmit}>
         <input
           type="text"
@@ -183,8 +196,12 @@ export default function FromSignUp() {
           </div>
         )}
 
-        <button type="submit" className={styles.signupButton}>
-          Create Account
+        <button
+          type="submit"
+          className={styles.signupButton}
+          disabled={myFormik.isSubmitting}
+        >
+          {myFormik.isSubmitting ? "lOADING..." : "Create Account"}
         </button>
       </form>
 
